@@ -1,0 +1,21 @@
+"use strict";
+exports.__esModule = true;
+var songkickhandler_1 = require("./songkickhandler");
+var config_1 = require("../config");
+var setlistFMHandler_1 = require("./setlistFMHandler");
+var express = require("express");
+var app = express();
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+app.get("/search/artist/:name", songkickhandler_1.searchArtist);
+app.get("/search/venue/:name", songkickhandler_1.searchVenue);
+app.get("/search/location/:name", songkickhandler_1.searchLocation);
+app.get("/get/events/geo/:longitude/:latitude", songkickhandler_1.getEventsFromGeolocation);
+app.get("/get/events/artist/:id", songkickhandler_1.getEventsFromArtist);
+app.get("/get/events/venue/:id", songkickhandler_1.getEventsFromVenue);
+app.get("/get/events/location/:id", songkickhandler_1.getEventsFromLocation);
+app.get("/get/setlist/:name", setlistFMHandler_1.getSetlistsFromArtist);
+app.listen(config_1.PORT, function () { return console.log("Server is listening on port " + config_1.PORT + "!"); });
