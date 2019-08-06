@@ -16,6 +16,8 @@
         "tippy.js": "^4.3.4"
     },
     "scripts": {
-        "dev": "parcel index.html"
+        "dev": "parcel index.html",
+        "build": "parcel build index.html",
+        "docker-build": "yarn install && parcel build index.html"
     }
 }
